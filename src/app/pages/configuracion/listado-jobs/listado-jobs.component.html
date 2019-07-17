@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                </div>
+                {{servidor.servidor}}
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="tblJob" cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Estatus</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of jobs">
+                                <td class="text-center">
+                                    <i class="fa fa-check" aria-hidden="true" *ngIf="item.configurado" style="font-size:32px ; color: green;"></i>
+                                    <i class="fa fa-times" aria-hidden="true" *ngIf="!item.configurado" style="font-size:32px ; color: red;"></i>
+                                </td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.descripcion}}</td>
+                                <td>
+                                    <a class="btn btn-outline btn-primary" (click)="configurar(item)">Configurar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

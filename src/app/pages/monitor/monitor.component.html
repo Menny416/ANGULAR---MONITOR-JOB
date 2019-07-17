@@ -1,0 +1,198 @@
+<div class="row">
+    <div class="col-md-6" style="cursor: pointer;">
+        <div class="hpanel hbgreddeep">
+            <div class="panel-body">
+                <div class="text-center">
+                    <h3>ALERTAS</h3>
+                    <p class="text-big font-light">
+                        {{NoCriticos}}
+                    </p>
+                    <small>
+                  </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" style="cursor: pointer;">
+        <div class="hpanel hbgyellow">
+            <div class="panel-body">
+                <div class="text-center">
+                    <h3>ADVERTENCIAS</h3>
+                    <p class="text-big font-light">
+                        {{NoAlertas}}
+                    </p>
+                    <small>
+                  </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="hpanel">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+                    <a class="showhide">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="fullscreen">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                ALERTAS
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="tblAlertas" cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th>Responsable</th>
+                                <th>Paquete</th>
+                                <th>Criticidad</th>
+                                <th>Tipo Ejecucion</th>
+                                <th>Tipo Paquete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of DataCriticos">
+                                <td style="width: 5%;">
+                                    <i class="fa fa-id-card" style="font-size: 20px; cursor: pointer;" data-toggle="modal" data-target="#mDatosContacto" (click)="open('', item)"></i>
+                                </td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.job}}</td>
+                                <td>{{item.tipoCriticidad}}</td>
+                                <td>{{item.tipoEjecucion}}</td>
+                                <td>{{item.tipoPaquete}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="hpanel">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+                    <a class="showhide">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="fullscreen">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                ADVERTENCIAS
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="tblAdvertencias" cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th>Responsable</th>
+                                <th>Paquete</th>
+                                <th>Criticidad</th>
+                                <th>Tipo Ejecucion</th>
+                                <th>Tipo Paquete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of DataAlertas">
+                                <td style="width: 5%;">
+                                    <i class="fa fa-id-card" style="font-size: 20px; cursor: pointer;" data-toggle="modal" data-target="#mDatosContacto" (click)="open('', item)"></i>
+                                </td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.tipoCriticidad}}</td>
+                                <td>{{item.tipoEjecucion}}</td>
+                                <td>{{item.tipoPaquete}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade hmodal-danger" id="mDatosContacto" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title"> {{model.nombre}}</h4>
+            </div>
+            <div class="modal-body">
+                <h5>Datos de Contacto</h5>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Correo:</th>
+                            <td>{{model.correo}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Telefono:</th>
+                            <td>{{model.telefono}}</td>
+                            <td>Ext:</td>
+                            <td>{{model.extension}}</td>
+                        </tr>
+                        <tr>
+                            <th>Celular:</th>
+                            <td>{{model.celular}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <h3>Detalle:</h3>
+                </div>
+                <div class="row">
+                    {{model.error}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <!-- <a href="mailto:{{model.correo}}?subject=JOB:  {{model.nombre}}&body={{model.error}}" class="btn w-xs btn-primary">Enviar Correo </a> 
+                <a class="btn w-xs btn-primary" data-toggle="modal" data-target="#mCorreo">Enviar correo</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade hmodal-danger" id="mCorreo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    {{model.nombre}}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="comment">Mensaje</label>
+                    <textarea [(ngModel)]="cuerpo" class="form-control" rows="5" id="comment" maxlength="200" placeholder="Por favor, escriba..." style="resize: none;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a class="btn w-xs btn-primary" (click)="correo(model)">Enviar</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+<link href="../../../../../assets/styles/ng2-select.css" rel="stylesheet">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel ">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+
+                </div>
+                Modificar
+            </div>
+            <div class="panel-body">
+                <form method="POST" id="frmusuario" (ngSubmit)="submit(frmusuario)" #frmusuario="ngForm" ngNativeValidate>
+                    <input type="text" id="esActivo" style="display:none" name="esActivo" [(ngModel)]="usuario.esLider">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">Nombre</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" disabled>
+                                    <span class="input-group-btn"> 
+                                    <button type="button" class="btn btn-primary"  (click)="openModalResponsables()">
+                                        <span *ngIf="!usuario.nombre">Asignar</span>
+                                    <span *ngIf="usuario.nombre">Cambiar</span>
+                                    </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cmbTema">correo</label>
+                                <input type="text" class="form-control" id="correo" name="correo" [(ngModel)]="usuario.correo" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">extension</label>
+                                <input type="text" class="form-control" id="extension" name="extension" [(ngModel)]="usuario.extension" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="cmbTema">celular</label>
+                                <input type="text" class="form-control" id="celular" name="celular" [(ngModel)]="usuario.celular" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">telefono</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="usuario.telefono" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="cmbTema">Jefe</label>
+                                <ng-select [items]="items" bindLabel="text" placeholder="Seleccione una opcion" autofocus bindValue="id" name="jefeId" [(ngModel)]="usuario.jefeId">
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">Es lider</label>
+                                <br>
+                                <ui-switch checked color="#fe9900" [checked]="usuario.esLider"></ui-switch>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right">
+                        <i class="fa fa-save"></i> Guardar
+                </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade hmodal-danger" id="mResponsable" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="cmbTema">Buscar</label>
+                        <div class="input-group">
+                            <input type="text" #txtBusquedaResponsable class="form-control" id="txtNombreResponsable" name="NombreResponsable" (keydown.enter)="consultarSiglas(txtBusquedaResponsable)">
+                            <span class="input-group-btn"> 
+                              <button type="button" class="btn btn-primary"  (click)="consultarSiglas(txtBusquedaResponsable)" >
+                                  <i class="fa fa-search" aria-hidden="true" *ngIf="!spinBotonBuscar"></i>
+                                  <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="spinBotonBuscar"></i>
+                              </button>
+                          </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="cmbTema">Listado <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="spinBotonBuscar"></i></label>
+                        <select class="form-control" #selRes id="responsableId" name="responsableId" [(ngModel)]="model.responsableId" required>
+                          <option value="0">Seleccione</option>
+                          <option *ngFor="let item of data" value="{{item | json}}">
+                              {{item.nombre}}
+                          </option>
+                      </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a class="btn w-xs btn-primary" (click)="closeModalResponsables(selRes.value)">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+                    <a class="showhide">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+                {{JOB.nombre}}
+            </div>
+            <div class="panel-body">
+                <form method="POST" id="frmJob" (ngSubmit)="submit(frmJob)" #frmJob="ngForm" ngNativeValidate>
+                    <input type="hidden" name="JobId" [(ngModel)]="JOB.id">
+                    <input type="hidden" name="Jobnombre" [(ngModel)]="JOB.nombre">
+                    <input type="hidden" name="servidorId" [(ngModel)]="servidor.servidorId">
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbArea">Area</label>
+                                <select class="form-control" id="areaId" name="areaId" [(ngModel)]="model.areaId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option *ngFor="let item of areas" value="{{item.id}}">
+                                        {{item.val}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cmbTema">Tema</label>
+                                <select class="form-control" id="temaId" name="temaId" [(ngModel)]="model.temaId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option *ngFor="let item of temas" value="{{item.id}}">
+                                        {{item.val}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">Criticidad</label>
+                                <select class="form-control" id="tipoCriticidadId" name="tipoCriticidadId" [(ngModel)]="model.tipoCriticidadId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option *ngFor="let item of criticidad" value="{{item.id}}">
+                                        {{item.val}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cmbTema">Ejecucion</label>
+                                <select class="form-control" id="tipoEjecucionId" name="tipoEjecucionId" [(ngModel)]="model.tipoEjecucionId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option *ngFor="let item of ejecucion" value="{{item.id}}">
+                                        {{item.val}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">Monitoreo</label>
+                                <select class="form-control" id="tipoMonitoreoId" name="tipoMonitoreoId" [(ngModel)]="model.tipoMonitoreoId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option *ngFor="let item of monitoreo" value="{{item.id}}">
+                                        {{item.val}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cmbTema">Paquete</label>
+                                <select class="form-control" id="tipoPaqueteId" name="tipoPaqueteId" [(ngModel)]="model.tipoPaqueteId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option *ngFor="let item of paquetes" value="{{item.id}}">
+                                        {{item.val}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">Responsable</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" disabled>
+                                    <span class="input-group-btn"> 
+                                        <button type="button" class="btn btn-primary"  (click)="openModalResponsables()">
+                                            <span *ngIf="!usuario.nombre">Asignar</span>
+                                    <span *ngIf="usuario.nombre">Cambiar</span>
+                                    </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cmbTema">Tiempo de Ejecución</label>
+                                <input type="text" class="form-control" id="tiempoEjecucion" name="tiempoEjecucion" [(ngModel)]="model.tiempoEjecucion" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success pull-right">
+                                <i class="fa fa-save"></i> Guardar
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade hmodal-danger" id="mResponsable" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="cmbTema">Buscar</label>
+                        <div class="input-group">
+                            <input type="text" #txtBusquedaResponsable class="form-control" id="txtNombreResponsable" name="NombreResponsable" (keydown.enter)="consultarSiglas(txtBusquedaResponsable)">
+                            <span class="input-group-btn"> 
+                                <button type="button" class="btn btn-primary"  (click)="consultarSiglas(txtBusquedaResponsable)" >
+                                    <i class="fa fa-search" aria-hidden="true" *ngIf="!spinBotonBuscar"></i>
+                                    <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="spinBotonBuscar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="cmbTema">Listado <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="spinBotonBuscar"></i></label>
+                        <select class="form-control" #selRes id="responsableId" name="responsableId" [(ngModel)]="model.responsableId" required>
+                            <option value="0">Seleccione</option>
+                            <option *ngFor="let item of data" value="{{item | json}}">
+                                {{item.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <a class="btn w-xs btn-primary" (click)="closeModalResponsables(selRes.value)">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>

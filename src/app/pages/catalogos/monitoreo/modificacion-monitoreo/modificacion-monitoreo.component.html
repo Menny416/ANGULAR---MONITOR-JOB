@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="hpanel ">
+            <div class="panel-heading hbuilt">
+                <div class="panel-tools">
+
+                </div>
+                Modificar
+            </div>
+            <div class="panel-body">
+                <form method="POST" id="frmmonitoreo" (ngSubmit)="submit(frmmonitoreo)" #frmmonitoreo="ngForm" ngNativeValidate>
+                    <input type="text" id="esActivo" style="display:none" name="esActivo" [(ngModel)]="monitoreo.esActivo">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cmbTema">Tipo monitoreo</label>
+                                <input type="text" class="form-control" id="monitoreo" name="tipoMonitoreo" [(ngModel)]="monitoreo.tipoMonitoreo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cmbTema">Estatus</label>
+                                <br>
+                                <ui-switch checked color="#fe9900" [checked]="monitoreo.esActivo" (change)="esActivoMod($event)"></ui-switch>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right">
+                            <i class="fa fa-save"></i> Guardar
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

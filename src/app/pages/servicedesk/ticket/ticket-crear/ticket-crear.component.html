@@ -1,0 +1,119 @@
+<div class="row" style="position: relative;" ngxUiLoaderBlurred [loaderId]="'loader-01'" blur="0">
+    <div class="col-lg-12">
+        <div class="hpanel">
+            <div class="panel-heading">
+                <div class="panel-tools">
+                    <a class="showhide">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                </div>
+                &nbsp;
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="">
+                                        <h4>¿Cuál es el problema?</h4>
+                                    </label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" maxlength="130" placeholder="Se breve">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="">
+                                    <h4>Responsable</h4>
+                                </label>
+
+                                <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" name="responsable"
+                                    required>
+                                </ng-autocomplete>
+
+                                <ng-template #itemTemplate let-item class="list-group ng-autocomplete">
+                                    <div class="social-talk">
+                                        <div class="media social-profile clearfix">
+                                            <a class="pull-left">
+                                                <img [src]="item.imagen" alt="profile-picture">
+                                            </a>
+
+                                            <div class="media-body">
+                                                <span class="font-bold" [innerHTML]="item.nombre"></span>
+                                                <small class="text-muted">{{item.sigla}}</small>
+
+                                                <div class="social-content">
+                                                    {{item.correo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <a style="z-index: 9;" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1" [innerHTML]="item.nombre"></h5>
+                                            <small>{{item.sigla}}</small>
+                                            <p class="mb-1">{{item.correo}}</p>
+                                        </div>
+                                    </a>
+                                    -->
+                                </ng-template>
+
+                                <ng-template #notFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                </ng-template>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="">
+                                    <h4>Producto</h4>
+                                </label>
+                                <select class="form-control" id="tipoMonitoreoId" name="tipoMonitoreoId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option value="1">FLASH PROGRAMACION</option>
+                                    <option value="2">FLASH IP</option>
+                                    <option value="3">TRACKING DE PRODUCTOS</option>
+                                    <option value="4">TRACKING DE INVESTIGACION Y DESARROLLO</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="">
+                                    <h4>Vista</h4>
+                                </label>
+                                <select class="form-control" id="tipoMonitoreoId" name="tipoMonitoreoId" required>
+                                    <option value="0">Seleccione</option>
+                                    <option value="1">VISTA 1</option>
+                                    <option value="2">VISTA 2</option>
+                                    <option value="3">VISTA 3</option>
+                                    <option value="4">VISTA 4</option>
+                                    <option value="5">VISTA 5</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">
+                                        <h4>¡Cuéntame mas!</h4>
+                                    </label>
+                                <input type="text" class="form-control smncm" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">
+                        <h4>Adjuntar archivos</h4>
+                    </label>
+                                <app-file-upload></app-file-upload>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary pull-right" (click)="generarTicket()">Crear</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
+</div>

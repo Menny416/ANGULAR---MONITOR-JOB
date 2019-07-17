@@ -1,0 +1,94 @@
+<!-- Header -->
+<div id="header">
+    <div class="color-line">
+    </div>
+    <div class="pull-left">
+        <img src="assets/images/logo.jpg" style="border: 1px solid red;width: 40px;height: 40px;margin: 4px 0px -1px 6px;padding-top: 0px;" alt="Logo">
+    </div>
+    <div id="logo" class="light-version" style="height: 39px">
+        <span>MONITOR</span>
+        <br>
+        <span style="top: -5px;
+        color: red;
+        position: relative;">TX</span>
+    </div>
+    <nav role="navigation">
+        <!--<div class="header-link hide-menu">
+            <i class="fa fa-bars"></i>
+        </div>-->
+        <div class="small-logo">
+            <span class="text-primary" id="spnHeadMobile">
+                MONITOR 
+                <a style="color: red; cursor: text;">TX</a>
+            </span>
+        </div>
+        <div class="mobile-menu">
+            <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+            <i class="fa fa-chevron-down"></i>
+        </button>
+            <div class="collapse mobile-navbar" id="mobile-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="nav-item nav-link" [routerLink]="[ '/tablero' ]" routerLinkActive="active">
+                                            Tablero
+                                </a>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" [routerLink]="[ '/configuracion' ]" routerLinkActive="active">
+                                Configuracion
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" [routerLink]="[ '/monitor' ]" routerLinkActive="active">
+                            <i class="fa fa-bolt"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li>
+                    <a href="#" [routerLink]="[ '/monitor' ]" routerLinkActive="active">
+                        <i class="fa fa-bolt"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" [routerLink]="[ '/tablero' ]" routerLinkActive="active">
+                                Tablero
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" [routerLink]="[ '/configuracion' ]" routerLinkActive="active">
+                        Configuración
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img *ngIf="sigla" class="TERNIUMthumbnail" [src]="sigla.imagen">
+                        <i *ngIf="!sigla" class="fa fa-user-circle-o"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated fadeIn">
+                        <!--<div class="title">
+                            You have 4 new messages
+                        </div>-->
+                        <li>
+                            <a [routerLink]="[ '/administracion' ]">
+                                Administración
+                            </a>
+                        </li>
+
+                        <!--<li class="summary"><a href="#">See All Messages</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
