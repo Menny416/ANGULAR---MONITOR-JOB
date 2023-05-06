@@ -62,7 +62,7 @@
         "chart.js": "^2.8.0",
         "core-js": "^3.1.4",
         "firebase": "^6.2.4",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "ng-pick-datetime": "^7.0.0",
         "ng-pick-datetime-moment": "^1.0.7",
         "ng2-charts": "^2.3.0",
